@@ -1,0 +1,8 @@
+- index.html (/var/www/smartRoomPP.com/html) bearbeitet
+   -> index.php geändert , DB-Verbindung (sensordata) , Tabelle: "randomData" (übernimmt Daten von randomData -> rooms, temperature, humidity, noise, wlan)
+- bootstrap.min.css in /var/www/smartRoomPP.com/html hochgeladen (Framework von bootstrap)
+- cover.css erstellt + in /var/www/smartRoomPP.com/html hochgeladen 
+- dashboard.css erstellt + in /var/www/smartRoomPP.com/html hochgeladen 
+- erstellen von datas.php (Datenbank anzeigen lassen & auslesen) und hochgeladen in smartRoom.PP.com
+- Verbindung steht und Daten können übertragen werden
+- Man kann zwischen "Startseite" & Seite mit dargestellten Daten in Tabellenform wechseln

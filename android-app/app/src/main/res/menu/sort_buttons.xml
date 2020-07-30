@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AlwaysShowAction">
+
+    <item android:id="@+id/sortByRecommendationButton"
+        android:title="@string/caption_recommendation"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/sortByRoomNameButton"
+        android:title="@string/caption_name"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/sortByTemperatureButton"
+        android:title="@string/caption_temperature"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/sortByWiFiButton"
+        android:title="@string/caption_wifi"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/sortByNoiseLevelButton"
+        android:title="@string/caption_noise"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/sortByAirHumidityButton"
+        android:title="@string/caption_humidity"
+        app:showAsAction="always" />
+
+</menu>

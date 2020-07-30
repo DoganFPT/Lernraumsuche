@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Weight_seekBar">
+        <attr name="wsb_max" format="integer" />
+        <attr name="wsb_min" format="integer" />
+        <attr name="wsb_progress" format="integer" />
+        <attr name="wsb_progressBar" format="color|reference" />
+        <attr name="wsb_thump" format="color|reference" />
+        <attr name="wsb_showSeekBarValue" format="boolean" />
+    </declare-styleable>
+</resources>

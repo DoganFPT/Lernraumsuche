@@ -1,0 +1,50 @@
+##########
+This is a protocol about the weekly meetings. 
+This protocol is starting from 28.11.2019
+##########
+========================
+28.11.2019
+---------------
+Done:
+---------------
+Code for measurement updated/impromved.
+---------------
+In progress:
+---------------
+Mic sensor
+	Code for Mic sensor for values in db over serial port.
+	Search for a formular.
+		Not possible because of no math-context values.
+		Some of the values:
+			on serial port - measured db using mobile phone
+			1-26
+			85-50
+			3-35
+		decision: will look for a formular with new and more values later 
+			after adjusting mic sensitivity
+
+Temp sensor:
+	Attempt to get values from temp sensor.
+
+Connectivity:
+	Test if the Argons still communicate using the new code.
+		Spoiler: They don't. Fix needed.
+
+========================
+5.12.2019
+---------------
+Done:
+---------------
+Code Argon1 und Argon2 merged
+Battery reseach and calc
+Mic adjusted and tested: still bad and cheap sensor
+updatedcHardware connection
+
+---------------
+In progress:
+---------------
+concept for sleepmode
+concept for timesync
+concept for collecting and publishing time
+
+========================

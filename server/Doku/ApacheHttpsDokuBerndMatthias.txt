@@ -1,0 +1,200 @@
+
+Dok: (MySite.conf)
+
+sliot@stud02: /etc/apache2/sites-available : mySite.conf editiert (um Befehle freizuschalten+ Umleitung Server zu only https:/ )
+						->Und enabled
+# 				
+
+/etc/ssl/certs : mv key+csr datei(com2323.com.csr / com2323.com.key)
+
+auskommentieren von Port 80 
+Configure Apache Web Server
+erstellen von Virtual Host in apache,
+editieren des file und den Virtual host für Domain machen und einfügen der Domain-Name 
+port 443, certificate file path etc. 
+(über sudo nano) /etc/apache2/site-enabled/mySite.conf
+
+-> Änderungen an MySite.conf
+<VirtualHost *:443> (HTTPS-Port)
+ServerAdmin Matthias.Schweiger@stud.uni-due.de
+DocumentRoot /var/www/html
+ServerName stud02.vs.uni-due.de
+SSLEngine on
+SSLCertificateFile /etc/ssl/certs/com2323.com.csr 
+SSLCertificateKeyFile /etc/ssl/certs/com2323.com.key 
+SSLCertificateChainFile /etc/ssl/certs/ca-certificates.crt 
+<Directory /var/www/html>
+AllowOverride All
+Options FollowSymLinks
+</Directory>
+</VirtualHost>
+
+#Redirect all http traffic to https
+<VirtualHost *:80>
+ServerName stud02.vs.uni-due.de
+Redirect permanent / https://stud02.vs.uni-due.de
+</VirtualHost>
+
+a2ensite MySite.conf -> Seite wurde enabled , nun in Directory sites-enabled
+
+
+
+var/www/html - stores actual webcontet , wenn man content für Seite erstellen möchte -> cd /var/www/html, dort files bearbeiten
+Server config: /etc/apache2
+weitere /etc/apache2/...
+etc/apache2/ main configurations hier! 
+-> mehrere config files,  
+	-> apache2.conf man könnte bestimmte einstellungen da wie Timeout etc. einstellen
+apache2/sites-available  (000-default.conf ; default-sss.conf) -> default konfigurationen
+			 -> ServerAdmin adresse könnte man ändern
+var/log/apache2 : logs (access.log gibt logs wer wann drauf zugriff, error.log hilfreich um fehler zu finden)
+
+
+
+vi /etc/hosts  -> Datei editieren , um IP-Adresse auf bestimmten Homepage namen zu mappen
+
+ -> im vi editor: i = Editierbefehl -> ESC um wieder in Befehlmodus zu springen
+		  o = Leerzeile einfügen
+		  x = Löschen des Symbols unter cursor
+		  dd = Löschen gesamter Zeile
+		  p = Wiederherstellen des gelöschten
+		  u = Rückgängig der letzten aktion
+		  dw = löscht wort unter Cursor
+		  r = ersetzt Zeichen unter Cursor mit eingabe
+		  w = sprung zum anfang des nächsten wortes 
+		  b = sprung zum anfang des wortes unter cursor
+		  g = Sprung an ende der datei
+		  (zahl)g = sprung an anfang zahlte zeile
+		  :w = speichern der Datei
+		  :wq = speichern der Datein und beenden
+		  :q! = verlassen von vi ohne speichern
+		  :q = verlassen von vi nachdem gespeichert wurde
+
+127.0.0.1 localhost
+127.0.1.1 client
+192.168.7.69 www.stud02.vs.uni-due.de
+-> nur von Clientseite aus sichtbar, einfach zur vereinfachung
+
+
+Auf server-home: openssl für authentifikation generierung
+
+sliot@stud02.vs.uni-due.de: (server home) : 
+->CA-KEY generieren: openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 -out cakey.pem
+	-> Generiert keypair mit bestimmter bitlänge(2048)
+-> signing der authentifizierung:
+sudo openssl req -new -x509 -key cakey.pem -out cacert.pem -days 1825 (5jahre) 
+	 -> signed authent. -> Danach fragt es nach informationen der CA
+
+Country Name : DE
+State or Province Name: NRW
+Locality Name: Duisburg
+Organization Name : Uni DUE
+Organizational Unit Name (optional):
+Common Name (Domain name) : www.Uni-App.de
+Email adress : Matthias.schweiger@stud.uni-due.de
+
+nun neu : cacert.pem (self-signed CA-certificate)
+          cakey.pem (Key-Pair)
+
+wieder zu home server: neue directories 
+ -> mkdir demoCA
+	->mkdir demoCA/certs
+	->mkdir demoCA/crl
+	->mkdir demoCA/newcerts
+	->mkdir demoCA/private
+	->touch demoCA/index.txt  (erstellen neuer leerer datei)
+	-> echo 02 > demoCA/serial (erstellen einer datei mit einem wert 02 benötigt) // war für uns (trotz sudo) nicht möglich, nicht benötigte rechte -> Permission denied)
+	-> mv cacert.pem demoCA/
+	-> mv cakey.pem demoCA/private/
+
+sudo vi /usr/lib/ssl/openssl.cnf  (Bearbeiten der Settings der Konfigurationen)
+-> scrollen runter zu CA policy (einstellen der vorherigen Authentifikationen -> DE, NRW, Duisburg,...)
+	-> State/organisation auf optional gestellt, DE gelassen
+
+CA-Authority nun gegeben,
+
+als Nächstes: Keypair für webserver
+
+auf server: openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 -out privkey-www.stud02.vs.uni-due.de.pem
+
+ demoCA und privkey-www.beispiel.com.pem generiert
+
+dann: generate ceritifcate signing request
+-> openssl req -new -key privkey-www.stud02.vs.uni-due.de.pem -out certreq-www.stud02.vs.uni-due.de.csr (certificate signing request = csr)
+ 	=> nötig um in ein format zu packen, dass benötigt wird
+-> dann wird man wieder gefragt nach den Authority  (DE, und opt. NRW,Duisburg, ...)
+Common Name wichtig: Domain name der Website die benutzt wird (stud02.vs.uni-due.de)
+dann kommen mögliche extra protection (kann man muss man nicht) -> wir gewählt: HakunaMatata
+-> certreq-www.stud02.vs.uni-due.de.csr wurde generiert
+
+Wir sind nun CA und müssen das request nehmen und signen
+-> openssl ca -in certreq-www.example.com.csr -out cert-www.stud02.vs.uni-due.de //Serial Nummer fehlt in Serial-Datei (demoCA/Serial)
+-> Da wir die Serial-datei nicht ändern konnten, ging es an der Stelle nicht weiter
+
+
+
+
+
+Was noch geplant war: 
+
+Nun cert-www.stud02.vs.uni-due.de.pem wurde generiert
+-> nötiges certificate für web server 
+-> cp demoCA/cacert.pem cert-ourca.crt (kopiert und renamed)
+
+vorher prüfen: openssl verify -CAfile cert.ourtca.crt cert-www.stud02.vs.uni-due.de.pem
+-> Antwort muss OK sein ,sonst irgendwo fehler
+
+Dann : Apache einrichten, dass es die Certifikate benutzt, um https einzurichten
+cp = copy , kopiert bestimmte Daten aus einem Speicherort aus
+sudo cp cert-www.beispiel.com.pem /etc/ssl/certs/ (kopiert Zertifikat "cert-www.stud02.vs.uni-due.de.pem" nach /etc/ssl/certs)
+sudo cp cert-ourca.crt /etc/ssl/certs/
+sudo cp privkey-www.stud02.vs.uni-due.de.pem /etc/ssl/private/  (private key in private subdirectory)
+-> muss protected sein!(private ordner nicht lesbar von jedem, nur ausführbar mit speziellem code ssl-cert, kann noch verändert werden für mehr Sicherheit)
+-> prüfen mit ls -l /etc/ssl , dort sieht man ob von allen oder nicht zugreifbar
+
+als nächstes: Apache2 konfigurieren, dass HTTPS benutzt werden kann
+
+-cd /etc/apache2
+-ls
+- cd sites-available/ 
+- ls
+default-ssl.conf konfigurieren!
+-> vi/nano default-ssl.conf
+=> ServerName + HTTPS Port adden (Domain name -> www.stud02.vs.uni-due.de:443)
+SSLCertificateFile /etc/ssl/certs/ssl-cert-snaikeoil.pem
+SSLCertificateKeyFile /etc/ssl/certs/ssl-cert-snaikeoil.key
+sollen geändert werden
+-> beide mit # auskommentieren
+unsere erstellten .pem und .key datei einfügen! 
+-> SSLCertificateFile		/etc/ssl/certs/cert-www.stud02.vs.uni-due.de.pem	(Webserver-Certificate)
+-> SSLCertificateKeyFile	/etc/ssl/private/privkey-www.stud02.vs.uni-due.de.pem	(Webserver-PrivateKey)
+-> SSLCACertificateFile		/etc/ssl/certs/cert-ourca.crt			(Webserver-CA-Certificate)
+=>Speichern & raus
+
+- ls
+- sudo a2enmod ssl (mods enablen)
+- ls sites-enabled/ 
+- sudo a2ensite default-ssl (enabled unser bearbeitetes File)
+- sudo systemctl reload apache2 (reloaded server, auch möglich: sudo systemctl restart apache2)
+-> Sollte nichts ausgeben, sonst irgendwo Syntax oder anderer Fehler
+-> apache sollte nun laufen (auch auf https) -> gibt aber Fehler aus, da Browser Unser CA-Certifikat nicht kennt (wenn man bestimmtes erhalten hat, kennt er und Fehler würde nicht kommen)
+
+Als nächstes: Client erkennen lassen, dass das CA-Certifikat in ordnung ist
+-wieder an start gehen cd .. oder cd
+- ls
+- scp 192.168.7.69:/c/Users/Bernd/certourca.crt . (punkt wichtig) (scp = secure copy) 
+      ->IP vonServer -> Home-Seite von Client aus (pwd gibt richtigen pfad aus)
+		   -> /certourca.crt (nötige CA-Certifikat-Datei die gespeichert wird)
+- dann Passwort eingeben (von Server)
+- ls -> CA-certificate ist auf Client seite
+- dann: Browser/OS setup, dass es aware ist von der CA Datei
+	-> sudo mkdir /usr/share/ca-certificates/extra (vllt anders wegen windows)
+- Passwort eingeben
+-> sudo cp cert-ourca.crt /usr/share/ca-certificates/extra/ (CA-Certificate in den neuen Ordner kopieren)
+-> sudo sudo dpkg-reconfigure ca-certificates (ca-certificates Ordner ist ein Software-Package, dass Auge wirft auf Certifikate von CA's, wir adden unser neues )
+-> Trust new certificates ? -> Yes
+-> Auswahl von certifikaten die man aktivieren möchte : Unseres auswählen (/extra/cert-ourca.crt -> Spacebar -> Tab zu OK und Enter)
+=> danach updatet es kurz
+-> DANN SOLLTE es funktionieren ohne fehlermeldung (HTTPS-Verschlüsselung läuft!)
+
+Testing: openssl s_client -connect www.stud02.vs.uni-due.de:443 (Benutze openssl, um dich mit einem Server zu verbinden: danach folgendes sind Details der Verbindung -> Protokolle, Certifikate-Chain, etc.) 

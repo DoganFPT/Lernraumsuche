@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="UDE_primary">#004C93</color>
+    <color name="UDE_primaryAccent">#efe4bf</color>
+    <color name="UDE_secondaryAccent">#dfe4f2</color>
+    <color name="UDE_text">#1a171b</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="UDE_primaryAccent_transp">#90efe4bf</color>
+</resources>

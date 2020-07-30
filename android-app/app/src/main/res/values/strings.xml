@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">Study Room Finder</string>
+    <string name="caption_settings">Settings</string>
+    <string name="caption_sorting">Sorting</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="formatter_temperature_C">%1$d °C</string>
+    <string name="caption_recommendation">Recommendation</string>
+    <string name="formatter_temperature_F">%1$d °F</string>
+    <string name="caption_generalsettings">General Settings</string>
+    <string name="caption_roompreferences">Room Preferences</string>
+    <string name="caption_applicationsettings">Application Settings</string>
+    <string name="text_enable_darkmode">Enable Dark Mode</string>
+    <string name="settings_key_dark_mode" translatable="false">dark_mode</string>
+    <string name="toast_data_refreshed">Data refreshed</string>
+    <string name="settings_key_fahrenheit" translatable="false">use_fahrenheit</string>
+    <string name="text_use_fahrenheit">Use Fahrenheit</string>
+    <string name="text_summary_on_fahrenheit">Display temperature in Fahrenheit</string>
+    <string name="text_summary_off_fahrenheit">Display temperature in Celsius</string>
+    <string name="caption_verydry">very dry</string>
+    <string name="caption_dry">dry</string>
+    <string name="caption_average_normal">average</string>
+    <string name="caption_humid">humid</string>
+    <string name="caption_veryhumid">very humid</string>
+    <string name="caption_none_kein">none</string>
+    <string name="caption_verybad">very bad</string>
+    <string name="caption_bad">bad</string>
+    <string name="caption_good">good</string>
+    <string name="caption_verygood">very good</string>
+    <string name="caption_excellent">excellent</string>
+    <string name="caption_average_middle">average</string>
+    <string name="caption_veryquiet">very quiet</string>
+    <string name="caption_quiet">quiet</string>
+    <string name="caption_whispering">whispering</string>
+    <string name="caption_loud">loud</string>
+    <string name="caption_veryloud">very loud</string>
+    <string name="caption_moderate_roomvolume">moderate</string>
+    <string name="caption_weight">Weight</string>
+    <string name="caption_humidity">Humidity</string>
+    <string name="caption_temperature">Temperature</string>
+    <string name="caption_noise">Volume</string>
+    <string name="caption_name">Name</string>
+    <string name="menu_about">About this app…</string>
+    <string name="title_activity_fullscreen" translatable="false">FullscreenActivity</string>
+    <string name="caption_dummy_button" translatable="false">Dummy Button</string>
+    <string name="caption_dummy_content" translatable="false">DUMMY\nCONTENT</string>
+    <string name="caption_logo">Logo</string>
+    <string name="icon_temperature_description">Temperature Icon</string>
+    <string name="icon_noise_description">Noise Icon</string>
+    <string name="icon_WiFi_description">WiFi Icon</string>
+    <string name="icon_humidity_description">Air Humidity Icon</string>
+    <string name="tickInterval" translatable="false">1</string>
+    <string name="weight_min" translatable="false">1</string>
+    <string name="weight_max" translatable="false">10</string>
+    <string name="temperature_display_C_rangeBar" translatable="false">°C</string>
+    <string name="temperature_display_F_rangeBar" translatable="false">°F</string>
+    <string name="temperature_tickStart_Celsius" translatable="false">-10</string>
+    <string name="temperature_tickStart_Fahrenheit" translatable="false">14</string>
+    <string name="temperature_tickEnd_Celsius" translatable="false">40</string>
+    <string name="temperature_tickeEnd_Fahrenheit" translatable="false">104</string>
+    <string name="humidity_measurementUnit" translatable="false">%</string>
+    <string name="humidity_tickStart" translatable="false">0</string>
+    <string name="humidity_tickEnd" translatable="false">100</string>
+    <string name="settings_key_campus_b" translatable="false">enable_campus_b</string>
+    <string name="settings_key_campus_m" translatable="false">enable_campus_m</string>
+    <string name="settings_key_campus_l" translatable="false">enable_campus_l</string>
+    <string name="caption_campus_b">B-Campus</string>
+    <string name="caption_campus_m">M-Campus</string>
+    <string name="caption_campus_l">L-Campus</string>
+    <string name="caption_campus">Campus</string>
+    <string name="settings_key_temperature" translatable="false">temperature_range</string>
+    <string name="settings_key_temperature_weight" translatable="false">temperature_weight</string>
+    <string name="settings_key_humidity" translatable="false">humidity_range</string>
+    <string name="settings_key_humidity_weight" translatable="false">humidity_weight</string>
+    <string name="caption_wifi">WiFi</string>
+    <string name="settings_key_wifi" translatable="false">wifi_min_value</string>
+    <string name="settings_key_wifi_weight" translatable="false">wifi_weight</string>
+    <string name="settings_key_noise" translatable="false">noise_max_value</string>
+    <string name="settings_key_noise_weight" translatable="false">noise_weight</string>
+    <string name="caption_developers">Developers</string>
+    <string name="caption_licenses">Licenses</string>
+    <string name="menu_search">Search</string>
+    <string name="caption_not_available">N/A</string>
+    <string name="formatter_recommendation_level" translatable="false">%1$d%%</string>
+    <string name="caption_zero" translatable="false">0</string>
+</resources>

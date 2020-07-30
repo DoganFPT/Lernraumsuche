@@ -1,0 +1,63 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="CI_UDE_Theme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/UDE_primary</item>
+        <item name="colorAccent">@color/UDE_primaryAccent</item>
+
+        <!-- Unused stuff -->
+        <!-- <item name="colorPrimaryDark">@color/colorPrimaryDark</item> -->
+    </style>
+
+    <style name="CI_UDE_TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/UDE_text</item>
+    </style>
+
+    <style name="CI_UDE_Button" parent="android:Widget.Button">
+        <item name="android:textColor">@color/UDE_text</item>
+    </style>
+
+    <style name="CI_UDE_Theme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="seekBarPreferenceStyle">
+        <item name="android:min">1</item>
+        <item name="android:max">10</item>
+        <item name="android:layout_width">285dp</item>
+        <item name="android:height">50dp</item>
+        <item name="android:progress">1</item>
+        <item name="android:progressDrawable">@drawable/seek_style</item>
+        <item name="android:splitTrack">false</item>
+        <item name="android:thumb">@drawable/seek</item>
+
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/UDE_primary</item>
+        <item name="colorPrimaryDark">@color/UDE_text</item>
+        <item name="colorAccent">@color/UDE_primary</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:textColor">@color/UDE_text</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+
+    <style name="FullscreenTheme" parent="CI_UDE_Theme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+</resources>
+

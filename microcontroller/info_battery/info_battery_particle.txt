@@ -1,0 +1,56 @@
+======================================
+PROBLEM Notes
+======================================
+Can Argon or Xennon read the battery state?
+	->It is possible to detect if usb power or power over battery
+
+======================================
+SPECS Notes
+======================================
+Pin P0,5 is used in xenon for reading battery states.
+
+
+description in particle site:
+
+Model Number	
+LP103450
+Voltage	3.7V DC
+Capacity	1800mAh
+Power	7.4Wh
+
+
+some docs about battery for particle:
+https://docs.particle.io/tutorials/learn-more/batteries/
+======================================
+ORDER Notes
+======================================
+
+possible:
+https://de.farnell.com/mikroelektronika/mikroe-1120/lithium-polymer-akku-3-7v-2ah/dp/2786900?st=ithium%20Akku%203.7V%20/%202Ah,%20Drahtanschluss
+MIKROE-1120 -  Akku, 3.7 V, Lithium-Polymer, 2 Ah, Anschlussdrähte
+
+https://de.rs-online.com/web/p/lithium-akkus/1449405/
+RS PRO Lithium Akku 3.7V / 1.8Ah, 1-Zellen, Drahtanschluss, 53.5 x 35 x 10.4 mm
+
+2,6Ah:
+https://de.rs-online.com/web/p/lithium-akkus/1449406/
+
+###########
+#WARNING# 
+	reverse polarity no sefety and WILL damage the battery
+###########
+
+needed bettery connector: 
+	jst-ph-connector
+
+======================================
+TODO Notes
+======================================
+
+how to detect battery polarity.
+	use multimeter
+	
+======================================
+Research Notes
+======================================
+Lower consumption 80uA is possible in deep sleep mode but an external wake signal is required and the device will restart/reset. When wifi is on current will be between 30-80mA with some spikes. Hence, very short wake periods with quick wifi comms and long deep sleep periods could get reasonably long periods of battery life - weeks.

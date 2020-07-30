@@ -1,0 +1,22 @@
+========================
+INFO (particle docs)
+========================
+Typical average current consumption is 80mA with 5V @ input of the recommended SMPS power supply with Wi-Fi on
+
+Deep sleep quiescent current is typically 80uA
+
+========================
+Calculation: ONLY sleepmode - 5years
+========================
+
+#per 24 h Day
+	80 * 10 ^(-3) * 24 mA = 1,92 mA
+	
+#per year
+ 1,92 mA * 365 = 700.8 mA
+ 
+ #5 years
+ 	700.8 mA* 5 = 3500,4 mA
+ 	
+ default battery: 1800mA ->  2,5 Years only sleep supported
+ 

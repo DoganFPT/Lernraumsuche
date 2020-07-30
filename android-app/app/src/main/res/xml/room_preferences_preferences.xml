@@ -1,0 +1,142 @@
+<!--
+  ~ Copyright 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:key="campus_preferences"
+        app:layout="@layout/preference_category"
+        app:title="@string/caption_campus">
+
+        <SwitchPreferenceCompat
+            app:key="@string/settings_key_campus_b"
+            app:title="@string/caption_campus_b"
+            app:icon="@drawable/ic_location_on_black_24dp" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/settings_key_campus_l"
+            app:title="@string/caption_campus_l"
+            app:icon="@drawable/ic_location_on_black_24dp" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/settings_key_campus_m"
+            app:title="@string/caption_campus_m"
+            app:icon="@drawable/ic_location_on_black_24dp" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+    app:key="temperature_preferences"
+    app:layout="@layout/preference_category"
+    app:title="@string/caption_temperature" >
+
+        <com.nfx.android.rangebarpreference.RangeBarPreferenceCompat
+            android:key="@string/settings_key_temperature"
+            android:id="@+id/tempRange"
+            app:rbp_tickStart="@string/temperature_tickStart_Celsius"
+            app:rbp_tickEnd="@string/temperature_tickEnd_Celsius"
+            app:rbp_tickInterval="@string/tickInterval"
+            app:rbp_measurementUnit="@string/temperature_display_C_rangeBar"
+            />
+
+        <SeekBarPreference
+            app:key="@string/settings_key_temperature_weight"
+            app:title="@string/caption_weight"
+            app:showSeekBarValue="true"
+            app:icon="@drawable/ic_favorite_black_24dp"
+            app:min="@string/weight_min"
+            android:max="@string/weight_max"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="humidity_preferences"
+        app:layout="@layout/preference_category"
+        app:title="@string/caption_humidity" >
+
+        <Preference
+            app:key="humidity_label"
+            app:layout="@layout/rangebar_humidity"
+        />
+
+        <com.nfx.android.rangebarpreference.RangeBarPreferenceCompat
+            android:key="@string/settings_key_humidity"
+            app:rbp_measurementUnit="@string/humidity_measurementUnit"
+            app:rbp_tickStart="@string/humidity_tickStart"
+            app:rbp_tickEnd="@string/humidity_tickEnd"
+            app:rbp_tickInterval="@string/tickInterval"/>
+
+        <SeekBarPreference
+            app:key="@string/settings_key_humidity_weight"
+            app:title="@string/caption_weight"
+            app:showSeekBarValue="true"
+            app:icon="@drawable/ic_favorite_black_24dp"
+            app:min="@string/weight_min"
+            android:max="@string/weight_max"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="wifi_preferences"
+        app:layout="@layout/preference_category"
+        app:title="@string/caption_wifi" >
+
+        <Preference
+            app:key="wifi_label"
+            app:layout="@layout/seekbar_wlan"
+            />
+
+        <SeekBarPreference
+            app:key="@string/settings_key_wifi"
+            app:showSeekBarValue="false"
+            app:icon="@drawable/ic_wifi"
+            app:min="1"
+            android:max="7"
+            />
+
+        <SeekBarPreference
+            app:key="@string/settings_key_wifi_weight"
+            app:title="@string/caption_weight"
+            app:showSeekBarValue="true"
+            app:icon="@drawable/ic_favorite_black_24dp"
+            app:min="@string/weight_min"
+            android:max="@string/weight_max"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="volume_preferences"
+        app:layout="@layout/preference_category"
+        app:title="@string/caption_noise" >
+
+        <Preference
+            app:key="noise_label"
+            app:layout="@layout/seekbar_noise"
+            />
+
+        <SeekBarPreference
+            app:key="@string/settings_key_noise"
+            app:showSeekBarValue="false"
+            app:icon="@drawable/ic_noise"
+            app:min="1"
+            android:max="7"/>
+
+        <SeekBarPreference
+            app:key="@string/settings_key_noise_weight"
+            app:title="@string/caption_weight"
+            app:showSeekBarValue="true"
+            app:icon="@drawable/ic_favorite_black_24dp"
+            app:min="@string/weight_min"
+            android:max="@string/weight_max"/>
+    </PreferenceCategory>
+</PreferenceScreen>

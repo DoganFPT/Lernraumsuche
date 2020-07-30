@@ -1,0 +1,1 @@
+1. Take care that the Argons have no registered Wifi Connections on them so that they start without searching for Connections and dont produce bugs.
